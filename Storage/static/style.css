@@ -1,0 +1,15 @@
+form {
+    
+    border: 2px solid;
+    border-radius: 3px;
+}
+form input{
+    border: 2px solid;
+    border-radius: 2px;
+}
+
+#result{
+    border: 2px solid yellow;
+    border-radius: 4px;
+    
+}

@@ -1,0 +1,93 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accuille</title>
+</head>
+<body>
+    <header class="navbar navbar-dark bg-dark ">
+
+        <a href="/" class="navbar-brand">A͓̽.͓̽K͓̽.͓̽U͓̽.͓̽M͓̽.͓̽A͓̽.͓̽N͓̽
+        </a>
+        <span class="navbar-text">DevOps</span>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="collapse navbar-collapse" id="navbar-content">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated%}
+                <li class="nav-item"><a href="admin" class="nav-link">Secrete</a></li>
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="admin" class="nav-link">Admin Page</a></li>
+                <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+
+
+
+                {% else %}
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="entity" class="nav-link">Profile</a></li>
+                <li class="nav-item"><a href="signin" class="nav-link">Signin</a></li>
+                <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+
+                {% endif%}
+
+
+
+
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+    <section class="container bg-light text-dark">
+        <span class="d-flex justify-content-center "><h2>AKUMAN's Blog</h2> </span>
+         <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="/">Home</a> </li>                
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+              </ol>
+            </nav>
+        <hr>
+
+        <div class="row">
+                       
+                <div class="col">
+                    <div class="card">                  
+                        <div class="card-body">
+                            <h5 class="card-title">{{pz.title}}</h5>
+                            <p class="container card-text">
+                            {{pz.body}}                           
+                            </p>                                                       
+                                                   
+                           <div class="card-footer">Date : {{pz.created_at}}</div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                
+        </div>
+    </section>
+
+
+    
+
+
+
+
+
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+
+</body>

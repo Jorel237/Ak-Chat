@@ -1,0 +1,179 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accuille</title>
+</head>
+
+<body>
+
+
+
+    <header class="navbar navbar-dark bg-dark ">
+
+        <a href="#" class="navbar-brand">A͓̽.͓̽K͓̽.͓̽U͓̽.͓̽M͓̽.͓̽A͓̽.͓̽N͓̽
+        </a>
+        <span class="navbar-text">DevOps</span>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="collapse navbar-collapse" id="navbar-content">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated%}
+                <li class="nav-item"><a href="admin" class="nav-link">Secrete</a></li>
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="admin" class="nav-link">Admin Page</a></li>
+                <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+
+
+
+                {% else %}
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="entity" class="nav-link">Profile</a></li>
+                
+                    <li class="nav-item"><a href="signin" class="nav-link">Signin</a></li>
+                    <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+              
+                
+
+                {% endif%}
+
+
+
+
+            </ul>
+        </nav>
+    </header>
+    <style>
+        #homes {
+            background-image: url('{%static "/Img/A.jpg" %}');
+        }
+    </style>
+    <main>
+
+
+        <section class="bg-dark text-light" id="homes">
+            <div class="container justify-content-center page-item ">
+                <br>
+                <h1></h1>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi
+                nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus
+                repellendus deleniti vel. Minus et tempore modi architecto.
+            </div><br>
+        
+        </section>
+        <section class="container bg-light text-dark">
+            <span class="d-flex justify-content-center "><h2>AKUMAN's Blog</h2> </span>
+            <hr>
+    
+            <div class="row">
+                    {% for ps in ps reversed%}               
+                    <div class="col">
+                        <div class="card" style="width: 18rem">                  
+                            <div class="card-body">
+                                <h5 class="card-title">{{ps.title}} <br><i><small class="opacity-50">
+                                    Date : {{ps.created_at}}</small></i> </h5>
+                                <p class="card-text">
+                                {{ps.body|truncatewords:30}}
+                                {{a}}
+                                </p>
+                                                                
+                                <a href="posts/{{ps.id}}" class="btn btn-primary">Read More..</a>                           
+                               
+                            </div>
+                        </div>
+    
+                    </div>
+                    
+                    {%endfor%}
+            </div>
+        </section>
+        {% if user.is_authenticated%}
+        <section class=" bg-dark text-light border border-primary border-4 rounded">
+            <span class="d-flex justify-content-center "><h3>WASSUP by AKuman</h3> </span>
+            
+            <div class="row">
+                <div class=" container  border-start border-primary border-3">
+                    <form method="post" action="check">
+                        
+                        {% csrf_token %}                        
+                        <input type="hidden" value="{{user.username}}" name="username">
+                        <h5>Insert Contact</h5>                          
+                            {% for u in us %} 
+                            <input type="submit" class="btn btn-outline-primary form-control " name="room_name" value="{{u}}" placeholder="{{u}}"> 
+                                                         
+                         
+                           {%endfor%}<br>
+                          
+                    </form>
+                   
+                </div>
+            </div>
+
+        </section>
+        {%else%}
+        <span class="text-center"><h2>WASSUP CHAT</h2> </span>
+        <section class="container row">           
+            <div class=" container col col-md">Ut velit est quam dolo
+                r ad a aliquid qui aliquid. Sequi ea ut et 
+                est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea 
+                voluptatem. Esse doloremque accusamus re
+                pellendus deleniti vel. Minus et tempore modi architecto.</div>
+                <div class="col">
+                    <a href="signin" class="btn btn-primary form-control">Start Message</a>
+                </div>
+                <div class="col">Eum ipsam laborum deleniti velit pariatur architecto aut nihil
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                     do eiusmod tempor incididunt
+                      ut labore et dolore ma
+                      gna aliqua. Duis aute irure dolor in reprehenderit</div>
+        </section>
+        {%endif%}
+
+
+
+    </main>
+    
+
+
+
+    <footer class="navbar navbar-expand-md navbar-dark bg-dark ">
+
+        <a href="/" class="navbar-brand">A͓̽.͓̽K͓̽.͓̽U͓̽.͓̽M͓̽.͓̽A͓̽.͓̽N͓̽
+        </a>
+        {%if user.is_authenticated%}
+        <span class="navbar-text">{{user.username}}:</span>
+        {%else%}
+        <span class="navbar-text">Social engine</span>
+
+        {%endif%}
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#snavbar-content">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="collapse navbar-collapse" id="snavbar-content">
+            <ul class="navbar-nav ms-auto">
+                {%if user.is_authenticated%}
+                <li class="nav-item"><a href="admin" class="nav-link">Admin Page</a></li>
+                {%endif%}
+
+                <li class="nav-item"><a href="#" class="nav-link active">Linux</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Hijaking</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Jargon</a></li>
+
+            </ul>
+        </nav>
+    </footer>
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

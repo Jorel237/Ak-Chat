@@ -1,0 +1,250 @@
+body{
+	background: #081b29;
+
+}
+/* Peset */
+#navi{
+	display: flex;
+	position: relative;
+	background: transparent;
+	top: 0;
+	left: 0;
+	padding: 30px 20px;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+}
+#logo{
+	font-size: 25px;
+	font-family: fireside;
+	font-weight: 600;
+	text-decoration: none;
+	color: #ededed;
+}
+#logo::before{
+	content: '';
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background: #081b29;
+ 	animation: showRight 1s ease forwards;
+ 	animation-delay: .3s;
+ }
+#navibar a{
+color: #ededed;
+	font-size: 18px;
+	text-decoration: none;
+	font-weight: 500; 
+	margin-left: 35px;
+	transition: 1s;
+}
+#navibar a:hover,
+#navibar a#active{
+	color: #00abf0;
+}
+
+#about-icons{
+	display: flex;
+	justify-content: space-between;
+
+	align-items: center;
+	position: absolute;
+	bottom: .5em;
+	width: 300px;
+
+}
+#about-icons::before{
+	content: '';
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background: #081b29;
+ 	animation: showRight 1s ease forwards;
+ 	animation-delay: 2.5s;
+ 	z-index: 2;
+ }
+  #about-icons a{
+  	position: relative;
+  	justify-content: center;
+  	align-items: center;
+  	display: inline-flex;
+  	width: 40px;
+  	height: 40px;
+  	background: transparent;
+  	border: 2px solid #00abf0;
+  	border-radius: 50%;
+  	font-size: 20px;
+  	color: #00abf0;
+  	text-decoration: none;
+  	z-index: 1;
+  	overflow: hidden;
+  	transition: .5s;
+  }
+  #about-icons a:hover{
+  	color: #081b29;
+  }
+  #about-icons a::before{
+  	content: '';
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	width: 0;
+ 	height: 100%;
+ 	background: #00abf0;
+ 	z-index: -1;
+ 	transition: .5s;
+  }
+  #about-icons a:hover::before{
+  	width: 100%;
+  }
+  #btn-box button{
+  display: inline-flex;
+ 	position: relative;
+ 	justify-content: center;
+ 	align-items: center; 	
+ 	width: 150px;
+ 	height: 100%;
+ 	background: #00abf0;
+ 	border:2px solid  #00abf0;
+ 	border-radius: 8px;
+ 	font-size: 19px;
+ 	color: #081b29;
+ 	text-decoration: none;
+ 	font-weight: 600;
+ 	letter-spacing: 1px;
+ 	z-index: 1;
+ 	overflow: hidden;
+ 	transition: .5s;
+ }
+ #btn-box button:nth-child(2){
+ 	background: transparent;
+ 	color: #00abf0;
+ }
+ #btn-box button:nth-child(2)::before{
+ 	background: #00abf0;
+ }
+ #btn-box button:nth-child(2):hover{
+ 	 color: #081b29;
+ }
+ #btn-box button::before{
+ 	content: '';
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	width: 0;
+ 	height: 100%;
+ 	background: #081b29;
+ 	z-index: -1;
+ 	transition: .5s;
+ }
+  #btn-box button:hover::before{
+  	width: 100%;
+  }
+  #btn-box button:hover{
+  	color: #00abf0;
+  }
+  /* End of Presets*/
+  /*Let start the work*/
+  #Form::before{
+    content: '';
+    position: relative;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: showRight 1s ease forwards;
+    animation-delay: .1s;
+    z-index: -1;
+  }
+  #Form{
+    position: relative;
+  	color: white;
+  	font-family: sans-serif;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	min-height: 70vh;
+  	width: 100%;
+  }
+  .form-box{
+    opacity: .8;
+  	position: relative;
+  	width: 500px;
+  	height: 500px;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	background: transparent;
+  	border: 2px solid #fff;
+    border-radius: 3rem;
+  }
+
+  .contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  	font-size: 3rem;
+  	color: white;
+  	
+  }
+  .input-box{
+  	position: relative;
+  	margin-left: 10px 0;
+  	width: 310px;
+  	border-bottom: 2px solid #fff;
+  }
+  .input-box label{
+  	position: absolute;
+  	top: 50%;
+  	left: 5px;
+  	transform: translateY(-50%);
+  	color: #fff;
+  	font-size: 1em;
+  	pointer-events: none;
+  	transition: .5s;
+  }
+  input:focus ~ label,
+  input:valid ~ label{
+  	top: 2rem;
+  }
+  .input-box input{
+  	width: 100%;
+  	height: 100px;
+  	background: transparent;
+  	border: none;
+  	outline: none;
+  	font-size: 1em;
+  	padding: 0 35px 0 5px;
+  	color: #fff;
+  }
+
+  #btn-box{
+  	margin-top: 20px;
+  	width: 100%;
+  	height: 40px;
+  	font-size: 1em;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	cursor: pointer;
+  }
+  #social{
+  	display: flex;
+  	justify-content: space-between;
+  }
+  h3{
+	color: red;
+  }
+  /*
+  /*Work Done :)*/
+/*KEY FRAMES*/
+@keyframes showRight{
+  	100%{
+  		width: 0;
+  	}
+  }

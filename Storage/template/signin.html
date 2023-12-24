@@ -1,0 +1,78 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Contact-css.css' %}">
+	<link rel="stylesheet" href="{% static 'all.css'%}">
+	<link rel="stylesheet" href="{% static 'fontawesome.css'%}">
+	<title>AKuman</title>
+</head>
+
+<body>
+	<header id="navi" class="container">
+		<a href="#" id="logo">AKUMAN.</a>
+		<nav id="navibar">
+			<a href="/">Home</a>			
+			<a href="#">Service</a>
+			<a href="#" id="active">Contact</a>
+		</nav>
+
+	</header>
+	<!--Send Me Email-->
+	<section id="Form">
+		<div class="form-box">
+			<div class="form-content">
+				{% for message in messages%}
+				<h3 style="color: red;">{{message}}</h3>
+				{% endfor %}
+				<form class="Data" method="post">
+					{% csrf_token %}
+					<h2 id="contact">Signin Or <a href="login"><i>login</i> </a></h2>
+					<div class="input-box">
+						<input type="text" name="name" required>
+						<label for="">Name</label>
+
+					</div>
+					<div class="input-box">
+						<input type="emial" name="email" required>
+						<label for="">Email</label>
+
+					</div>
+					<div class="input-box">
+						<input type="password" name="pwd" required>
+						<label for="">Password</label>
+
+					</div>
+					<div class="input-box">
+						<input type="password" name="Cpwd" required>
+						<label for="">Confirm Password</label>
+
+					</div>
+
+
+					<div id="btn-box">
+						<button>Submit</button>
+					</div>
+
+
+					<!-- Social Contact Me-->
+
+					<!-- <div id="about-icons">
+
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i class="fab fa-whatsapp"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+					</div> -->
+
+				</form>
+
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

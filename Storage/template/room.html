@@ -1,0 +1,169 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'boxicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons.css' %}">
+    <script src="{% static 'bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'jquery.js' %}" type="text/javascript"></script>
+    <script src="{% static 'main.js' %}" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accuille-Chat</title>
+</head>
+ <body>
+    <header class="navbar navbar-dark bg-dark ">
+
+        <a href="#" class="navbar-brand">A͓̽.͓̽K͓̽.͓̽U͓̽.͓̽M͓̽.͓̽A͓̽.͓̽N͓̽
+        </a>
+        <span class="navbar-text">DevOps</span>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <nav class="collapse navbar-collapse" id="navbar-content">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated%}
+                <li class="nav-item"><a href="admin" class="nav-link">Secrete</a></li>
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="admin" class="nav-link">Admin Page</a></li>
+                <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+
+
+
+                {% else %}
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">C++</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Py</a></li>
+                <li class="nav-item"><a href="entity" class="nav-link">Profile</a></li>
+                
+                    <li class="nav-item"><a href="signin" class="nav-link">Signin</a></li>
+                    <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+              
+                
+
+                {% endif%}
+
+
+
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container d-flex justify-content-center page-item  bg-light">
+        
+        <form method="post" id="post_form" >
+            {% csrf_token %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"> <a href="/">Home</a> </li>                
+                  <li class="breadcrumb-item active" aria-current="page">Chat</li>
+                </ol>
+              </nav>
+            <div class="card">              
+                <div class="card-body bg-light">
+                  <h5 class="card-title">{{room}} - WASSUP CHAT</h5>
+                  <div class="card-text" id="display">
+                      <!-- <div class="card bg-info" style="height: 8.5rem;">                          
+                            <div class="card-body">
+                              <h5 class="card-title">User Name</h5>
+                              <p class="card-text">
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.<br><hr>
+                                <small><i>Date time : </i></small>
+                              </p>
+                              
+                            </div>
+                          </div> -->
+                    
+                        </div> 
+                                  
+                    <input type="hidden" name="username" id="username" value="{{user}}">                  
+                    <input type="hidden" name="room_id" id="room_id" value="{{room_detaile.id}}">                  
+                     
+                
+
+                  <div class="input-group">
+                     <div class="input-group-text"><i class="bi bi-search"></i></div>
+  
+                      <input type="text" name="message" id="message" class="form-control">
+                      <input type="submit" name="submit" value="Send" class="form-control-sm">
+                  </div>
+                </div>
+              </div>
+              <script>
+                $(document).ready(function(){
+                    setInterval(function(){
+                        $.ajax({
+                            type:'GET',
+                            url:'/getMessage/{{room}}/',
+                            success:function(response){
+                                console.log(response)
+                                $('#display').empty()
+                                for (var key in response.message)
+                                {
+                                    var temp = "<div class='card bg-info' style='height: 8.5rem;'><b>" +response.message[key].user+"</b><p>"+response.message[key].value+"</p><i>"+response.message[key].date+"</i></div>"
+                                    $('#display').append(temp);
+                                }
+                            },
+                            error:function(response){
+                                alert('An error occured')
+                            }
+                        })
+                    },1000)
+                })
+              </script>
+        </form>
+       
+    </section>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+
+ </body>
+ 
+ <script type="text/javascript">
+
+
+
+
+
+
+    $(document).on('submit','#post_form',function(e){
+        e.preventDefault()
+
+        $.ajax({
+            type:'POST',
+            url:'/send',
+            data:{
+                username:$('#username').val(),
+                room_id:$('#room_id').val(),
+                message:$('#message').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function(data){
+                //alert(data)
+            }
+        })
+        document.getElementById('message').value =''
+    })
+ </script>
+ </html>
